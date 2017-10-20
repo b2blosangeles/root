@@ -36,7 +36,7 @@ for (var i = 0; i < v.length; i++) {
 						if (ips.indexOf(v[i]) != -1) {
 							cbk(v[i]);
 						} else {
-							cbk('B')
+							cbk(false)
 						}
 					}
 				   });
@@ -52,9 +52,14 @@ CP.parallel(
 	_f,
 	function(data) {
 		if (data.status == "success") {
-			res.send(data.results);
+			for (o in data.results) {
+				if (data.result[o]) {
+					res.send({status:'success', value:data.result[o]});
+				}
+			}
+			
 		} else {
-			res.send(data.status);
+			res.send({{status:'error', value:JSON.stringify(data)}});
 		}
 	},
 	10000
