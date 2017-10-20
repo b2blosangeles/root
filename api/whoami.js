@@ -31,7 +31,11 @@ for (var i = 0; i < v.length; i++) {
 					if (error) {
 						cbk(false);
 					} else {
-						cbk(v[i]);
+						var ips = [];
+						try {
+							ips = JSON.parse(body);	
+						} catch (e) { }
+						cbk(ips);
 					}
 				   });
 			} else {
