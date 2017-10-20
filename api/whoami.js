@@ -22,7 +22,6 @@ for (var i = 0; i < v.length; i++) {
 		return function(cbk) {
 			if (isIp(v[i])) {
 				pkg.request({
-
 					url: 'http://'+v[i]+'/checkip/',
 					headers: {
 					    "content-type": "application/json"
@@ -32,7 +31,7 @@ for (var i = 0; i < v.length; i++) {
 					if (error) {
 						cbk(error.message);
 					} else {
-						cbk(data);
+						cbk(body);
 					}
 				   });
 			} else {
