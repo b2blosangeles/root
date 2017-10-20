@@ -27,7 +27,7 @@ for (var i = 0; i < v.length; i++) {
 				    "content-type": "application/json"
 				}
 			    }, function (error, resp, body) { 
-              cbk('NIU');
+              cbk('NIU2');
 			   });
 		}	
 	})(i);
