@@ -58,9 +58,9 @@ CP.parallel(
 			var ip = '';
 			for (var o in data.results) {
 				if (data.results[o]) {
-					break;
+					
 					ip = data.results[o];
-					return true;
+					break;
 				}
 			}
 			if (ip) {
