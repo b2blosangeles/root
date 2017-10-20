@@ -2,10 +2,8 @@ var v = req.body.ip;
 if (!v) {
 	res.send({error:'Missing ip'});
 	return true;
-} else {
-	res.send(req.body);
-	return true;
-}
+} 
+
 /*
 function isIp(ip) {
     var arrIp = ip.split(".");
