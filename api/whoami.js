@@ -67,7 +67,7 @@ CP.parallel(
 				var connection = mysql.createConnection(cfg0);
 				connection.connect();
 				var str = 'INSERT INTO `cloud_server` (`server_ip`,`space`,`created`, `updated`) VALUES (' +
-				    '"'+value:data.results[o]+'","",NOW(), NOW())';
+				    '"'+ip+'","",NOW(), NOW())';
 				connection.query(str, function (error, results, fields) {
 					connection.end();
 					if (error) {
