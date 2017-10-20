@@ -1,0 +1,3 @@
+[
+	{"id":"_git_service","schedule":"11 * * * * *", "script":"git_service.js"}
+]
