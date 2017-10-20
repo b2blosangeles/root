@@ -20,15 +20,24 @@ var _f = {};
 for (var i = 0; i < v.length; i++) {
 	_f['P_'+i] = (function(i) {
 		return function(cbk) {
-			pkg.request({
-				url: 'http://'+v[i]+'/checkip/',
-				headers: {
-				    "content-type": "application/json"
-				},
-				timeout: 500
-			    }, function (error, resp, body) { 
-              			cbk(body);
-			   });
+			if (isIp(v[i])) {
+				pkg.request({
+
+					url: 'http://'+v[i]+'/checkip/',
+					headers: {
+					    "content-type": "application/json"
+					},
+					timeout: 500
+				    }, function (error, resp, body) { 
+					if (error) {
+						cbk(error.message);
+					} else {
+						cbk(data);
+					}
+				   });
+			} else {
+				cbk(false);
+			}
 		}	
 	})(i);
 }
