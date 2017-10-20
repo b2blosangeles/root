@@ -29,9 +29,9 @@ for (var i = 0; i < v.length; i++) {
 					timeout: 200
 				    }, function (error, resp, body) { 
 					if (error) {
-						cbk(error.message);
+						cbk(false);
 					} else {
-						cbk(body);
+						cbk(v[i]);
 					}
 				   });
 			} else {
