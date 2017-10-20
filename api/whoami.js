@@ -26,7 +26,7 @@ for (var i = 0; i < v.length; i++) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					timeout: 200
+					timeout: 500
 				    }, function (error, resp, body) { 
 					if (error) {
 						cbk(false);
@@ -45,7 +45,11 @@ for (var i = 0; i < v.length; i++) {
 CP.parallel(
 	_f,
 	function(data) {
-		res.send(data);
+		if (data.status == "success") {
+			res.send(data.results);
+		} else {
+			res.send(data.status);
+		}
 	},
 	10000
 );
