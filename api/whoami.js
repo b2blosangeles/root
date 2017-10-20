@@ -1,7 +1,7 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
 
-var v = req.body.ip;
+var v = req.body.ip, space = req.body.space;
 if (!v) {
 	res.send({error:'Missing ip'});
 	return true;
@@ -55,13 +55,30 @@ CP.parallel(
 	_f,
 	function(data) {
 		if (data.status == "success") {
+			var ip = '';
 			for (var o in data.results) {
 				if (data.results[o]) {
-					res.send({status:'success', value:data.results[o]});
+					break;
+					ip = data.results[o];
 					return true;
 				}
 			}
-			res.send({status:'error', value:'No IP Addresss'});
+			if (ip) {
+				var connection = mysql.createConnection(cfg0);
+				connection.connect();
+				var str = 'INSERT INTO `cloud_server` (`server_ip`,`space`,`created`, `updated`) VALUES (' +
+				    '"'+value:data.results[o]+'","",NOW(), NOW())';
+				connection.query(str, function (error, results, fields) {
+					connection.end();
+					if (error) {
+						cbk(false);
+					} else {
+						res.send({status:'success', value:data.results[o]});
+					}
+				}); 
+			} else {
+				res.send({status:'error', value:'No IP Addresss'});
+			}	
 			
 		} else {
 			res.send({status:'error', value:JSON.stringify(data)});
