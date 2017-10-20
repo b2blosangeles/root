@@ -52,16 +52,14 @@ CP.parallel(
 	_f,
 	function(data) {
 		if (data.status == "success") {
-			res.send({status:'error', value:data.results});
-			/*
-			for (o in data.results) {
+			for (var o in data.results) {
 				if (data.result[o]) {
 					res.send({status:'success', value:data.results[o]});
 					return true;
 				}
 			}
 			res.send({status:'error', value:'No IP Addresss'});
-			*/
+			
 		} else {
 			res.send({status:'error', value:JSON.stringify(data)});
 		}
