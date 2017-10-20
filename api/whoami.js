@@ -35,7 +35,11 @@ for (var i = 0; i < v.length; i++) {
 						try {
 							ips = JSON.parse(body);	
 						} catch (e) { }
-						cbk(ips);
+						if (ips.indexOf(v[i) != -1) {
+							cbk('A');
+						} else {
+							cbk('B')
+						}
 					}
 				   });
 			} else {
