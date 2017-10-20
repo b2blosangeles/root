@@ -34,7 +34,7 @@ for (var i = 0; i < v.length; i++) {
 						var ips = [];
 						try { ips = JSON.parse(body);} catch (e) { }
 						if (ips.indexOf(v[i]) != -1) {
-							cbk('A');
+							cbk(v[i]);
 						} else {
 							cbk('B')
 						}
