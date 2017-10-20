@@ -3,7 +3,7 @@ if (!v) {
 	res.send({error:'Missing ip'});
 	return true;
 } else {
-	res.send(body);
+	res.send(req.body);
 	return true;
 }
 /*
