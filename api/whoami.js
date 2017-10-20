@@ -24,7 +24,8 @@ for (var i = 0; i < v.length; i++) {
 				url: 'http://'+v[i]+'/checkip/',
 				headers: {
 				    "content-type": "application/json"
-				}
+				},
+				timeout: 500
 			    }, function (error, resp, body) { 
               			cbk(body);
 			   });
