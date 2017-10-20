@@ -52,7 +52,7 @@ CP.parallel(
 	_f,
 	function(data) {
 		if (data.status == "success") {
-			res.send({status:'error', value:results});
+			res.send({status:'error', value:data.results});
 			/*
 			for (o in data.results) {
 				if (data.result[o]) {
