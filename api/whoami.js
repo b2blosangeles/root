@@ -26,7 +26,7 @@ for (var i = 0; i < v.length; i++) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					timeout: 500
+					timeout: 200
 				    }, function (error, resp, body) { 
 					if (error) {
 						cbk(error.message);
