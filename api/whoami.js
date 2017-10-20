@@ -61,7 +61,7 @@ CP.parallel(
 			}
 			*/
 		} else {
-			res.send({status:'error', value:JSON.stringify(data)}});
+			res.send({status:'error', value:JSON.stringify(data)});
 		}
 	},
 	10000
