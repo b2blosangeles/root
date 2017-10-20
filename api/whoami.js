@@ -4,7 +4,6 @@ if (!v) {
 	return true;
 } 
 
-/*
 function isIp(ip) {
     var arrIp = ip.split(".");
     if (arrIp.length !== 4) return "Invalid IP";
@@ -14,13 +13,12 @@ function isIp(ip) {
     }
     return true;
 }
-*/
 
 var CP = new pkg.crowdProcess();
 var _f = {};
 
 for (var i = 0; i < v.length; i++) {
-	_f[i] = (function(i) {
+	_f['P_'+i] = (function(i) {
 		return function(cbk) {
 			pkg.request({
 				url: 'http://'+v[i]+'/checkip/',
@@ -28,7 +26,7 @@ for (var i = 0; i < v.length; i++) {
 				    "content-type": "application/json"
 				}
 			    }, function (error, resp, body) { 
-              cbk(body);
+              			cbk(body);
 			   });
 		}	
 	})(i);
@@ -40,5 +38,5 @@ CP.parallel(
 	function(data) {
 		res.send(data);
 	},
-	30000
+	10000
 );
