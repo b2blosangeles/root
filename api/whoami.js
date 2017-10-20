@@ -52,12 +52,14 @@ CP.parallel(
 	_f,
 	function(data) {
 		if (data.status == "success") {
+			res.send({status:'success', value:data.results})
+			/*
 			for (o in data.results) {
 				if (data.result[o]) {
-					res.send({status:'success', value:data.result[o]});
+					res.send({status:'success', value:data.results[o]});
 				}
 			}
-			
+			*/
 		} else {
 			res.send({status:'error', value:JSON.stringify(data)}});
 		}
