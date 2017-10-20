@@ -1,3 +1,6 @@
+var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
+var cfg0 = require(env.site_path + '/api/cfg/db.json');
+
 var v = req.body.ip;
 if (!v) {
 	res.send({error:'Missing ip'});
