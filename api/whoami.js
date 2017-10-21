@@ -67,9 +67,9 @@ CP.parallel(
 				var connection = mysql.createConnection(cfg0);
 				connection.connect();
 				var str = 'INSERT INTO `cloud_server` (`server_ip`,`space`,`created`, `updated`) VALUES (' +
-				    '"'+ip+'","' + encodeURIComponent(JSON.stringify(space)) + '",NOW(), NOW())  ' +
-				    ' ON DUPLICATE KEY UPDATE `updated` = NOW(), `space` = "' + encodeURIComponent(JSON.stringify(space)) + '"; ';
-				
+				    "'"+ip+"','" + JSON.stringify(space) + "',NOW(), NOW())  " +
+				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `space` = '" + JSON.stringify(space) + "'; ";
+				// encodeURIComponent
 				connection.query(str, function (error, results, fields) {
 					connection.end();
 					if (error) {
@@ -88,3 +88,4 @@ CP.parallel(
 	},
 	10000
 );
+encodeURIComponent
