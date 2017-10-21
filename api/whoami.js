@@ -73,7 +73,7 @@ CP.parallel(
 				connection.query(str, function (error, results, fields) {
 					connection.end();
 					if (error) {
-						cbk(false);
+						res.send({status:'error', value:error.message});
 					} else {
 						res.send({status:'success', value:ip});
 					}
