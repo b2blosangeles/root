@@ -68,14 +68,14 @@ CP.parallel(
 				connection.connect();
 				var str = 'INSERT INTO `cloud_server` (`server_ip`,`space`,`created`, `updated`) VALUES (' +
 				    '"'+ip+'","",NOW(), NOW())  ' +
-				    ' ON DUPLICATE KEY UPDATE SET `updated` = NOW()';
+				    ' ON DUPLICATE KEY UPDATE SET `updated` = NOW(); ';
 				
 				connection.query(str, function (error, results, fields) {
 					connection.end();
 					if (error) {
 						cbk(false);
 					} else {
-						res.send({status:'success', value:data.results[o]});
+						res.send({status:'success', value:ip});
 					}
 				}); 
 			} else {
