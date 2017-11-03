@@ -1,4 +1,7 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
+res.send('==niu==');
+return true;
+
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
 
 var v = req.body.ip, space = req.body.space;
@@ -16,8 +19,7 @@ function isIp(ip) {
     }
     return true;
 }
-res.send('==niu==');
-return true;
+
 var CP = new pkg.crowdProcess();
 var _f = {};
 
