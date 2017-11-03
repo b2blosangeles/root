@@ -69,7 +69,7 @@ CP.parallel(
 			if (ip) {
 				var connection = mysql.createConnection(cfg0);
 				connection.connect();
-				var str = 'INSERT INTO `cloud_server` (`server_ip`,`space`,`created`, `updated`) VALUES (' +
+				var str = 'INSERT INTO `cloud_node` (`server_ip`,`space`,`created`, `updated`) VALUES (' +
 				    "'"+ip+"','" + JSON.stringify(space) + "',NOW(), NOW())  " +
 				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `space` = '" + JSON.stringify(space) + "'; ";
 				// encodeURIComponent
