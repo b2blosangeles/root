@@ -1,7 +1,5 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
-res.send('==niu==');
-return true;
-
+// Shusiou Node will call this API to add himself into  
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
 
 var v = req.body.ip, space = req.body.space;
@@ -69,7 +67,7 @@ CP.parallel(
 			if (ip) {
 				var connection = mysql.createConnection(cfg0);
 				connection.connect();
-				var str = 'INSERT INTO `cloud_node` (`server_ip`,`space`,`created`, `updated`) VALUES (' +
+				var str = 'INSERT INTO `cloud_node` (`node_ip`,`space`,`created`, `updated`) VALUES (' +
 				    "'"+ip+"','" + JSON.stringify(space) + "',NOW(), NOW())  " +
 				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `space` = '" + JSON.stringify(space) + "'; ";
 				// encodeURIComponent
@@ -91,4 +89,3 @@ CP.parallel(
 	},
 	10000
 );
-encodeURIComponent
