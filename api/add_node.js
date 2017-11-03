@@ -16,7 +16,8 @@ function isIp(ip) {
     }
     return true;
 }
-
+res.send('==niu==');
+return true;
 var CP = new pkg.crowdProcess();
 var _f = {};
 
