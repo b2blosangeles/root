@@ -69,7 +69,7 @@ CP.parallel(
 				connection.connect();
 				var str = 'INSERT INTO `cloud_node` (`node_ip`,`total_space`,`created`, `updated`) VALUES (' +
 				    "'"+ip+"','123',NOW(), NOW())  " +
-				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `space` = '123'; ";
+				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `total_space` = '123'; ";
 				// encodeURIComponent
 				connection.query(str, function (error, results, fields) {
 					connection.end();
