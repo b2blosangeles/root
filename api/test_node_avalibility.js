@@ -1,6 +1,7 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
 
+var str = "SELECT * FROM `cloud_node`"
 var connection = mysql.createConnection(cfg0);
 connection.connect();
 connection.query(str, function (error, results, fields) {
