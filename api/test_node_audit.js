@@ -42,11 +42,11 @@ _f['D2'] = function(cbk) {
 							var audit = [];
 							try { audit = JSON.parse(recs[i].audit); } catch(e) {}
 							audit[audit.length+1] = new Date().getTime();
-							var connection = mysql.createConnection(cfg0);
-							connection.connect();
+							//var connection = mysql.createConnection(cfg0);
+							//connection.connect();
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
 							    "' WHERE node_ip = '" + ip + "'";
-							connection.end();
+							//connection.end();
 							cbk1(str);
 							return true;
 							/*
