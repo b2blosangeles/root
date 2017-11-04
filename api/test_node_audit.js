@@ -39,9 +39,14 @@ _f['D2'] = function(cbk) {
 						try { v = JSON.parse(body); } catch(e) {}
 						if (v.indexOf(ip) == -1) cbk1(true);
 						else {
-							var audit = [];
-							try { if (recs[i].audit) audit = JSON.parse(recs[i].audit); } catch(e) {}
-							audit[audit.length] = new Date().getTime();
+							var a, audit = [];
+							try { if (recs[i].a) a = JSON.parse(recs[i].a); } catch(e) {}
+							a[a.length] = new Date().getTime();
+							a.reverse();
+							for (var j=0; j<a.length; j++) {
+								if ((new Date().getTime() - a[j]) < 10) audit[audit.length] = a[j];
+							}
+							
 							var connection = mysql.createConnection(cfg0);
 							connection.connect();
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
