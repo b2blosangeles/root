@@ -37,9 +37,11 @@ _f['D2'] = function(cbk) {
 					} else {
 						var v = [];
 						try { v = JSON.parse(body); } catch(e) {}
-						if (v.indexOf(ip) == -1) cbk1(true);
+						if (v.indexOf(ip) != -1) cbk1(true);
 						else {							
 							v[v+1] = new Date().getTime();
+							var connection = mysql.createConnection(cfg0);
+							connection.connect();
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(v) + 
 							    "' WHERE node_ip = '" + ip + "'";
 							onnection.query(str, function (error, results, fields) {
