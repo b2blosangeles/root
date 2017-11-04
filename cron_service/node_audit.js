@@ -45,11 +45,11 @@ _f['D2'] = function(cbk) {
 						else audit[audit.length] = 0;
 
 						for (var j=0; j< a.length; j++) {
-							if (j < 9) audit[audit.length] = a[j];
+							if (j < 5) audit[audit.length] = a[j];
 							else break;
 						}
 						for (var j=0; j < audit.length; j++) {
-							if (audit[j]) score += Math.floor(Math.pow(10 - (j / 4), 8) * 0.00001);
+							if (audit[j]) score += Math.floor(Math.pow(10 - (j * 2), 8) * 0.00001);
 						} 
 						var connection = mysql.createConnection(cfg0);
 						connection.connect();
