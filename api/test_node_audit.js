@@ -35,6 +35,8 @@ _f['D2'] = function(cbk) {
 					if (error) {
 						cbk1(false);
 					} else {
+						cbk1('str');
+						/*
 						var v = [];
 						try { v = JSON.parse(body); } catch(e) {}
 						if (v.indexOf(ip) == -1) cbk1(true);
@@ -49,7 +51,7 @@ _f['D2'] = function(cbk) {
 							//connection.end();
 							cbk1('str');
 							return true;
-							/*
+							
 							connection.query(str, function (error, results, fields) {
 								connection.end();
 								if (error) {
