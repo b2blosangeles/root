@@ -3,7 +3,7 @@ env.site_path = env.root_path + '/site';
 
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
-var crowdProcess =  require(env.root_path + '/package/crowdProcess/crowdProcess')
+var crowdProcess =  require(env.root_path + '/package/crowdProcess/crowdProcess');
 var request = require(env.root_path + '/package/request/node_modules/request');	
 
 var CP = new crowdProcess();
