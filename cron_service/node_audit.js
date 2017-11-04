@@ -40,14 +40,18 @@ _f['D2'] = function(cbk) {
 					var changeStatus = function(mark, cbk) {
 						var a = [], audit = [], score = 0;
 						try { if (recs[i].audit) a = JSON.parse(recs[i].audit); } catch(e) {}
-						if (mark) a[a.length] = new Date().getTime();
 						a.reverse();
-						for (var j=0; j<a.length; j++) {
-							if ((new Date().getTime() - a[j]) < 300000) audit[audit.length] = a[j];
+						
+						if (mark) audit[audit.length] = 1;
+						else audit[audit.length] = 0;
+
+						for (var j=0; j< a.length; j++) {
+							if (j < 9) audit[audit.length] = a[j];
+							else break;
 						}
 						for (var j=0; j < audit.length; j++) {
-							if (audit[j] && j < 10) score += (10-j);
-						}
+							if (audit[j]) score += (10-j) * (10-j);
+						} 
 						var connection = mysql.createConnection(cfg0);
 						connection.connect();
 						var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
