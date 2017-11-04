@@ -50,7 +50,7 @@ _f['D2'] = function(cbk) {
 							else break;
 						}
 						for (var j=0; j < audit.length; j++) {
-							if (audit[j]) score += (10-j) * (10-j);
+							if (audit[j]) score += (10-j) * (10-j) * (10-j);
 						} 
 						var connection = mysql.createConnection(cfg0);
 						connection.connect();
