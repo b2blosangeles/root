@@ -44,7 +44,7 @@ _f['D2'] = function(cbk) {
 						try { v = JSON.parse(body); } catch(e) {}
 						if (v.indexOf(ip) == -1) cbk1(true);
 						else {
-							var a, audit = [], score = 0;
+							var a = [], audit = [], score = 0;
 							try { if (recs[i].audit) a = JSON.parse(recs[i].audit); } catch(e) {}
 							a[a.length] = new Date().getTime();
 							a.reverse();
