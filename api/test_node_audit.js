@@ -48,7 +48,7 @@ _f['D2'] = function(cbk) {
 							    "' WHERE node_ip = '" + ip + "'";
 							
 							
-							onnection.query(str, function (error, results, fields) {
+							connection.query(str, function (error, results, fields) {
 								connection.end();
 								if (error) {
 									cbk(str);
