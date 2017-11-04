@@ -42,14 +42,14 @@ _f['D2'] = function(cbk) {
 					} else {
 						var v = [];
 						try { v = JSON.parse(body); } catch(e) {}
-						if (v.indexOf(ip) == -1) cbk1(true);
+						if (v.indexOf(ip) !== -1) cbk1(true);
 						else {
 							var a = [], audit = [], score = 0;
 							try { if (recs[i].audit) a = JSON.parse(recs[i].audit); } catch(e) {}
 							a[a.length] = new Date().getTime();
 							a.reverse();
 							for (var j=0; j<a.length; j++) {
-								if ((new Date().getTime() - a[j]) < 600000) audit[audit.length] = a[j];
+								if ((new Date().getTime() - a[j]) < 300000) audit[audit.length] = a[j];
 							}
 							for (var j=0; j < audit.length; j++) {
 								if (audit[j] && j < 10) score += (10-j);
