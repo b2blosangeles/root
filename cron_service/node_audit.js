@@ -1,10 +1,12 @@
-var path = require('path');
-var env = {root_path:path.join(__dirname, '../..')};
+var path = require('path'), env = {root_path:path.join(__dirname, '../..')};
+env.site_path = env.root_path + '/site';
 
 var mysql = require(env.site_path + '/site/api/inc/mysql/node_modules/mysql');
 var cfg0 = require(env.site_path + '/site/api/cfg/db.json');
+var crowdProcess =  require(env.root_path + '/package/crowdProcess/crowdProcess');
+var request =  require(env.root_path + '/package/request/request');	
 
-var CP = new pkg.crowdProcess();
+var CP = crowdProcess();
 var _f = {};
 
 _f['D1'] = function(cbk) {
@@ -22,13 +24,13 @@ _f['D1'] = function(cbk) {
 	});	
 }
 _f['D2'] = function(cbk) {
-	var CP1 = new pkg.crowdProcess();
+	var CP1 = crowdProcess();
 	var _f1 = {}, recs = CP.data.D1;	
 	for (var i = 0; i < recs.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-				pkg.request({
+				request({
 					url: 'http://'+ ip +'/checkip/',
 					headers: {
 					    "content-type": "application/json"
@@ -81,7 +83,7 @@ _f['D2'] = function(cbk) {
 CP.serial(
 	_f,
 	function(data) {
-		res.send(data.results);
+		log.write("/var/log/shusiou_cron.log", 'cron::node_audit',  JSON.stringify(data.results));
 	}, 3000
 );	
  
