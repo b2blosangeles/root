@@ -27,7 +27,7 @@ _f['D2'] = function(cbk) {
 			return function(cbk1) {
 				cbk1(i);
 			}
-		})(i)
+		})(i);
 		
 	}
 	
@@ -43,12 +43,12 @@ _f['D2'] = function(cbk) {
 CP.serial(
 	_f,
 	function(data) {
-		res.send(data.results.D1);
+		res.send(data.results);
 	}, 3000
 );	
  
 return true;
-
+/*
 var v = req.body.ip, space = req.body.space;
 if (!v) {
 	res.send({error:'Missing ip'});
@@ -135,4 +135,4 @@ CP.parallel(
 	},
 	10000
 );
-
+*/
