@@ -70,7 +70,7 @@ CP.parallel(
 				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `total_space` = '" 
 					+ space.total + "', `free_space` = '" + space.free + "', " +
 					"`free` = '" + space.free_rate + "'; ";
-				// encodeURIComponent
+	
 				connection.query(str, function (error, results, fields) {
 					connection.end();
 					if (error) {
