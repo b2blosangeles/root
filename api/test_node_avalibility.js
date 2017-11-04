@@ -1,6 +1,9 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
 
+var CP = new pkg.crowdProcess();
+var _f = {};
+
 var str = "SELECT * FROM `cloud_node`";
 var connection = mysql.createConnection(cfg0);
 connection.connect();
@@ -30,8 +33,7 @@ function isIp(ip) {
     return true;
 }
 
-var CP = new pkg.crowdProcess();
-var _f = {};
+
 
 for (var i = 0; i < v.length; i++) {
 	_f['P_'+i] = (function(i) {
