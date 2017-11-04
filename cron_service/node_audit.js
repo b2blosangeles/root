@@ -6,7 +6,7 @@ var cfg0 = require(env.site_path + '/api/cfg/db.json');
 var crowdProcess =  require(env.root_path + '/package/crowdProcess/crowdProcess');
 var request = require(env.root_path + '/package/request/node_modules/request');	
 
-var CP = crowdProcess();
+var CP = new crowdProcess();
 var _f = {};
 
 _f['D1'] = function(cbk) {
