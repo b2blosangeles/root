@@ -20,8 +20,8 @@ _f['D1'] = function(cbk) {
 }
 _f['D2'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
-	var _f1 = {}, recs = CP.data.D1.length;	
-	for (var i = 0; i < recs; i++) {
+	var _f1 = {}, recs = CP.data.D1;	
+	for (var i = 0; i < recs.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
 				cbk1(recs[i].node_ip);
