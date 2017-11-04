@@ -65,10 +65,11 @@ CP.parallel(
 			if (ip) {
 				var connection = mysql.createConnection(cfg0);
 				connection.connect();
-				var str = 'INSERT INTO `cloud_node` (`node_ip`,`total_space`,`free_space`,`created`, `updated`) VALUES (' +
-				    "'"+ip+"','" + space.total + "','" + space.free + "',NOW(), NOW())  " +
+				var str = 'INSERT INTO `cloud_node` (`node_ip`,`total_space`,`free_space`, `free`, `created`, `updated`) VALUES (' +
+				    "'"+ip+"','" + space.total + "','" + space.free + "','" + space.free_rate + "',NOW(), NOW())  " +
 				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `total_space` = '" 
-					+ space.total + "', `free_space` = '" + space.free + "'; ";
+					+ space.total + "', `free_space` = '" + space.free + "', " +
+					"`free` = '" + space.rate + "'; ";
 				// encodeURIComponent
 				connection.query(str, function (error, results, fields) {
 					connection.end();
