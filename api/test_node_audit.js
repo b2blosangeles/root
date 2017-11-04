@@ -49,6 +49,7 @@ _f['D2'] = function(cbk) {
 							connection.end();
 							cbk1(str);
 							return true;
+							/*
 							connection.query(str, function (error, results, fields) {
 								connection.end();
 								if (error) {
@@ -57,7 +58,7 @@ _f['D2'] = function(cbk) {
 									cbk1(false);
 								}
 							});
-							
+							*/
 						}	
 					}
 				   });	
