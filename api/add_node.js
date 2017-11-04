@@ -50,8 +50,6 @@ for (var i = 0; i < v.length; i++) {
 		}	
 	})(i);
 }
-
-
 CP.parallel(
 	_f,
 	function(data) {
