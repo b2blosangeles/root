@@ -35,7 +35,12 @@ _f['D2'] = function(cbk) {
 					if (error) {
 						cbk1(false);
 					} else {
-						cbk1('str');
+						var v = [];
+						try { v = JSON.parse(body); } catch(e) {}
+						if (v.indexOf(ip) == -1) cbk1(true);
+						else {
+							cbk1('str2');
+						}	
 						/*
 						var v = [];
 						try { v = JSON.parse(body); } catch(e) {}
