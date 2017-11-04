@@ -40,8 +40,8 @@ _f['D2'] = function(cbk) {
 						if (v.indexOf(ip) == -1) cbk1(true);
 						else {
 							var audit = [];
-							try { audit = JSON.parse(recs[i].audit); } catch(e) {}
-							audit[audit.length+1] = new Date().getTime();
+							//try { audit = JSON.parse(recs[i].audit); } catch(e) {}
+							audit[audit.length+1] = 'new Date().getTime()';
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
 							    "' WHERE node_ip = '" + ip + "'";
 							cbk1(str);
