@@ -46,8 +46,9 @@ _f['D2'] = function(cbk) {
 							connection.connect();
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
 							    "' WHERE node_ip = '" + ip + "'";
-							
-							
+							connection.end();
+							bk(str);
+							return true;
 							connection.query(str, function (error, results, fields) {
 								connection.end();
 								if (error) {
