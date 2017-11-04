@@ -39,6 +39,8 @@ _f['D2'] = function(cbk) {
 						try { v = JSON.parse(body); } catch(e) {}
 						if (v.indexOf(ip) == -1) cbk1(true);
 						else {
+							var audit = [];
+							try { audit = JSON.parse(recs[i].audit); } catch(e) {}
 							cbk1('str2');
 						}	
 						/*
@@ -65,8 +67,9 @@ _f['D2'] = function(cbk) {
 									cbk1(false);
 								}
 							});
-							*/
-						}	
+							
+						}
+						*/
 					}
 				   });	
 			}
