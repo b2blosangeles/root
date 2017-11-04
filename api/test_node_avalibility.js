@@ -24,7 +24,26 @@ _f['D2'] = function(cbk) {
 	for (var i = 0; i < recs.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
-				cbk1(recs[i].node_ip);
+				var ip = recs[i].node_ip;
+				pkg.request({
+					url: 'http://'+ ip +'/checkip/',
+					headers: {
+					    "content-type": "application/json"
+					},
+					timeout: 500
+				    }, function (error, resp, body) { 
+					if (error) {
+						cbk(false);
+					} else {
+						var ips = [];
+						try { ips = JSON.parse(body);} catch (e) { }
+						if (ips.indexOf(v[i]) != -1) {
+							cbk(v[i]);
+						} else {
+							cbk(false)
+						}
+					}
+				   });	
 			}
 		})(i);
 	}
