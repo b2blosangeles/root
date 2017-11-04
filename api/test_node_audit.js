@@ -44,7 +44,7 @@ _f['D2'] = function(cbk) {
 							a[a.length] = new Date().getTime();
 							a.reverse();
 							for (var j=0; j<a.length; j++) {
-								if ((new Date().getTime() - a[j]) < 10) audit[audit.length] = a[j];
+								if ((new Date().getTime() - a[j]) < 60000) audit[audit.length] = a[j];
 							}
 							for (var j=0; j < audit.length; j++) {
 								if (audit[j] && j < 10) score += (10-j);
