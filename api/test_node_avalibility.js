@@ -38,7 +38,7 @@ _f['D2'] = function(cbk) {
 						var v = [];
 						try { v = JSON.parse(body); } catch(e) {}
 						if (v.indexOf(ip) !== -1) cbk1('exist');
-						cbk1('not exist');
+						else cbk1('not exist');
 					}
 				   });	
 			}
