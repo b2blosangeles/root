@@ -46,7 +46,7 @@ _f['D2'] = function(cbk) {
 							for (var j=0; j<a.length; j++) {
 								if ((new Date().getTime() - a[j]) < 10) audit[audit.length] = a[j];
 							}
-							for (var j=0; j<10; j++) {
+							for (var j=0; j < audit.length; j++) {
 								if (audit[j]) score += (10-j);
 							}
 							var connection = mysql.createConnection(cfg0);
