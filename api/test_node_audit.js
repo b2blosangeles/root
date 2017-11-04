@@ -52,7 +52,7 @@ _f['D2'] = function(cbk) {
 							var connection = mysql.createConnection(cfg0);
 							connection.connect();
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
-							    "' WHERE `node_ip` = '" + ip + "', `score` = '" + score + "'";
+							    "', `score` = '" + score + "' WHERE `node_ip` = '" + ip + "'";
 							connection.query(str, function (error, results, fields) {
 								connection.end();
 								if (error) {
