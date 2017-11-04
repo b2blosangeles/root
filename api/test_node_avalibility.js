@@ -35,7 +35,9 @@ _f['D2'] = function(cbk) {
 					if (error) {
 						cbk1(false);
 					} else {
-						cbk1(body);
+						var v = [];
+						try { v = JSON.parse(body); } catch(e) {}
+						cbk1(v);
 					}
 				   });	
 			}
