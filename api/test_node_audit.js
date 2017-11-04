@@ -40,22 +40,23 @@ _f['D2'] = function(cbk) {
 						if (v.indexOf(ip) == -1) cbk1(true);
 						else {	
 							var audit = [];
+							try { audit = JSON.parse(recs[i].audit); } catch(e) {}
 							audit[audit.length+1] = new Date().getTime();
-						//	var connection = mysql.createConnection(cfg0);
-						//	connection.connect();
+							var connection = mysql.createConnection(cfg0);
+							connection.connect();
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
 							    "' WHERE node_ip = '" + ip + "'";
-							cbk(str);
-						/*	
+							
+							
 							onnection.query(str, function (error, results, fields) {
 								connection.end();
 								if (error) {
-									cbk(false);
+									cbk(str);
 								} else {
 									cbk(false);
 								}
 							});
-						*/	
+							
 						}	
 					}
 				   });	
