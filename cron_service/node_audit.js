@@ -49,7 +49,7 @@ _f['D2'] = function(cbk) {
 							else break;
 						}
 						for (var j=0; j < audit.length; j++) {
-							if (audit[j]) score += Math.floor(Math.pow(10-j, 6) * 0.001);
+							if (audit[j]) score += Math.floor(Math.pow(10-j, 8) * 0.00001);
 						} 
 						var connection = mysql.createConnection(cfg0);
 						connection.connect();
