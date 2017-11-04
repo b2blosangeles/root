@@ -42,37 +42,19 @@ _f['D2'] = function(cbk) {
 							var audit = [];
 							try { if (recs[i].audit) audit = JSON.parse(recs[i].audit); } catch(e) {}
 							audit[audit.length] = new Date().getTime();
+							var connection = mysql.createConnection(cfg0);
+							connection.connect();
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
 							    "' WHERE node_ip = '" + ip + "'";
-							cbk1(str);
-						}	
-						/*
-						var v = [];
-						try { v = JSON.parse(body); } catch(e) {}
-						if (v.indexOf(ip) == -1) cbk1(true);
-						else {	
-							var audit = [];
-							try { audit = JSON.parse(recs[i].audit); } catch(e) {}
-						//	audit[audit.length+1] = new Date().getTime();
-							//var connection = mysql.createConnection(cfg0);
-							//connection.connect();
-						//	var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
-						//	    "' WHERE node_ip = '" + ip + "'";
-							//connection.end();
-							cbk1('str');
-							return true;
-							
 							connection.query(str, function (error, results, fields) {
 								connection.end();
 								if (error) {
-									cbk1(str);
+									cbk1(true);
 								} else {
 									cbk1(false);
 								}
 							});
-							
-						}
-						*/
+						}	
 					}
 				   });	
 			}
