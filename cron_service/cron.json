@@ -1,4 +1,4 @@
 [
 	{"id":"_git_service","schedule":"11 * * * * *", "script":"git_service.js"},
-	{"id":"_node_audit","schedule":"1 * * * * *", "script":"node_audit.js"}
+	{"id":"_node_audit","schedule":"*/30 * * * * *", "script":"node_audit.js"}
 ]
