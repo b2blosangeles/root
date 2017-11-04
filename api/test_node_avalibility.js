@@ -11,16 +11,16 @@ _f['D1'] = function(cbk) {
 	connection.query(str, function (error, results, fields) {
 		connection.end();
 		if (error) {
-			cbk({status:'error', value:error.message});
+			cbk(false);
 		} else {
-			cbk({status:'success', value:results});
+			cbk(results);
 		}
 	});	
 }
 CP.parallel(
 	_f,
 	function(data) {
-		res.send(data);
+		res.send(data.results.D1);
 	}
 );	
  
