@@ -27,7 +27,6 @@ _f['D2'] = function(cbk) {
 				cbk1(i);
 			}
 		})(i);
-		
 	}
 	
 	CP1.parallel(
