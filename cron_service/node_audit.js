@@ -83,7 +83,7 @@ _f['D2'] = function(cbk) {
 CP.serial(
 	_f,
 	function(data) {
-		log.write("/var/log/shusiou_cron.log", 'cron::node_audit',  JSON.stringify(data.results));
+		process.stdout.write(JSON.stringify(data.results));
 	}, 3000
 );	
  
