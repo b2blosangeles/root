@@ -40,8 +40,7 @@ _f['D2'] = function(cbk) {
 					var changeStatus = function(mark, cbk) {
 						var a = [], audit = [], score = 0;
 						try { if (recs[i].audit) a = JSON.parse(recs[i].audit); } catch(e) {}
-						a.reverse();
-						
+		
 						if (mark) audit[audit.length] = 1;
 						else audit[audit.length] = 0;
 
