@@ -35,7 +35,7 @@ _f['D2'] = function(cbk) {
 					if (error) {
 						cbk1(false);
 					} else {
-						cbk1(true);
+						cbk1(body);
 					}
 				   });	
 			}
