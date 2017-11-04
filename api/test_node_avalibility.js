@@ -4,17 +4,26 @@ var cfg0 = require(env.site_path + '/api/cfg/db.json');
 var CP = new pkg.crowdProcess();
 var _f = {};
 
-var str = "SELECT * FROM `cloud_node`";
-var connection = mysql.createConnection(cfg0);
-connection.connect();
-connection.query(str, function (error, results, fields) {
-	connection.end();
-	if (error) {
-		res.send({status:'error', value:error.message});
-	} else {
-		res.send({status:'success', value:results});
+_f['D1'] = function(cbk) {
+	var str = "SELECT * FROM `cloud_node`";
+	var connection = mysql.createConnection(cfg0);
+	connection.connect();
+	connection.query(str, function (error, results, fields) {
+		connection.end();
+		if (error) {
+			cbk({status:'error', value:error.message});
+		} else {
+			cbk({status:'success', value:results});
+		}
+	});	
+}
+CP.parallel(
+	_f,
+	function(data) {
+		res.send(data);
 	}
-}); 
+);	
+ 
 return true;
 
 var v = req.body.ip, space = req.body.space;
