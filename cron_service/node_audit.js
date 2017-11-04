@@ -24,7 +24,7 @@ _f['D1'] = function(cbk) {
 	});	
 }
 _f['D2'] = function(cbk) {
-	var CP1 = crowdProcess();
+	var CP1 = new crowdProcess();
 	var _f1 = {}, recs = CP.data.D1;	
 	for (var i = 0; i < recs.length; i++) {
 		_f1['P_'+i] = (function(i) {
