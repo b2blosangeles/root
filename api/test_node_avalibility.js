@@ -33,15 +33,9 @@ _f['D2'] = function(cbk) {
 					timeout: 500
 				    }, function (error, resp, body) { 
 					if (error) {
-						cbk(false);
+						cbk1(false);
 					} else {
-						var ips = [];
-						try { ips = JSON.parse(body);} catch (e) { }
-						if (ips.indexOf(v[i]) != -1) {
-							cbk(v[i]);
-						} else {
-							cbk(false)
-						}
+						cbk1(true);
 					}
 				   });	
 			}
