@@ -59,9 +59,9 @@ _f['D2'] = function(cbk) {
 						} else {
 							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
 						   	 "', `score` = '" + score + "'," +
-							 "`total_space` = '" + total + "'," +
-							 "`free_space` = '" + free + "'," +
-							 "`free` = '" + free_rate + "'," +
+							 "`total_space` = '" + space.total + "'," +
+							 "`free_space` = '" + space.free + "'," +
+							 "`free` = '" + space.free_rate + "'," +
 							 "`updated` = NOW() " +    
 							 " WHERE `node_ip` = '" + ip + "'";
 						}
