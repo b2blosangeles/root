@@ -66,7 +66,7 @@ CP.parallel(
 				var connection = mysql.createConnection(cfg0);
 				connection.connect();
 				var str = 'INSERT INTO `cloud_node` (`node_ip`,`total_space`,`free_space`, `free`, `created`, `updated`, `score`,`channel`) VALUES (' +
-				    "'"+ip+"','" + space.total + "','" + space.free + "','" + space.free_rate + "',NOW(), NOW(), 1000, '" + channel + "')  " +
+				    "'"+ip+"','" + space.total + "','" + space.free + "','" + space.free_rate + "',NOW(), NOW(), 1000, '" + space.channel + "')  " +
 				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `total_space` = '" 
 					+ space.total + "', `free_space` = '" + space.free + "', " +
 				    	"`channel` = '" + space.channel + "', " +
