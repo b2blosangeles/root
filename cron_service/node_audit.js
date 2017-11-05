@@ -37,7 +37,7 @@ _f['D2'] = function(cbk) {
 					},
 					timeout: 500
 				    }, function (error, resp, body) { 
-					var changeStatus = function(mark, cbk) {
+					var changeStatus = function(mark, space, cbk) {
 						var a = [], audit = [], score = 0;
 						try { if (recs[i].audit) a = JSON.parse(recs[i].audit); } catch(e) {}
 		
@@ -53,8 +53,18 @@ _f['D2'] = function(cbk) {
 						} 
 						var connection = mysql.createConnection(cfg0);
 						connection.connect();
-						var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
-						    "', `score` = '" + score + "' WHERE `node_ip` = '" + ip + "'";
+						if (space === false) {
+							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
+						   	 "', `score` = '" + score + "', `updated` = NOW() WHERE `node_ip` = '" + ip + "'";
+						} else {
+							var str = "UPDATE `cloud_node` SET `audit` = '" + JSON.stringify(audit) + 
+						   	 "', `score` = '" + score + "'," +
+							 "`total_space` = '" + total + "'," +
+							 "`free_space` = '" + free + "'," +
+							 "`free` = '" + free_rate + "'," +
+							 "`updated` = NOW() " +    
+							 " WHERE `node_ip` = '" + ip + "'";
+						}
 						connection.query(str, function (error, results, fields) {
 							connection.end();
 							if (error) {
@@ -70,8 +80,8 @@ _f['D2'] = function(cbk) {
 					} else {
 						var v = {};
 						try { v = JSON.parse(body); } catch(e) {}
-						if (v.ip === ip) changeStatus(false, cbk1);
-						else changeStatus(true, cbk1);
+						if (v.ip === ip) changeStatus(false, v.space, cbk1);
+						else changeStatus(true, false, cbk1);
 					}
 				   });	
 			}
