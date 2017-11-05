@@ -31,7 +31,7 @@ _f['D2'] = function(cbk) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
 				request({
-					url: 'http://'+ ip +'/checkip/',
+					url: 'http://'+ ip +'/api/node_audit.api?opt=status',
 					headers: {
 					    "content-type": "application/json"
 					},
