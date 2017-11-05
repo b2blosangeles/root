@@ -62,6 +62,7 @@ _f['D2'] = function(cbk) {
 							 "`total_space` = '" + space.total + "'," +
 							 "`free_space` = '" + space.free + "'," +
 							 "`free` = '" + space.free_rate + "'," +
+							 "`channel` = '" + space.channel + "'," +
 							 "`updated` = NOW() " +    
 							 " WHERE `node_ip` = '" + ip + "'";
 						}
