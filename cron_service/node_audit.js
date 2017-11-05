@@ -68,12 +68,10 @@ _f['D2'] = function(cbk) {
 					if (error) {
 						changeStatus(true, cbk1);
 					} else {
-						var v = [];
+						var v = {};
 						try { v = JSON.parse(body); } catch(e) {}
-						if (v.indexOf(ip) !== -1) changeStatus(false, cbk1);
-						else {
-							changeStatus(true, cbk1);
-						}	
+						if (v.ip == ip) changeStatus(false, cbk1);
+						else changeStatus(true, cbk1);
 					}
 				   });	
 			}
