@@ -2,7 +2,7 @@ var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 // Shusiou Node will call this API to add himself into  
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
 
-var v = req.body.ip, space = req.body.space;
+var v = req.body.ip, space = req.body.space, channel = (req.body.channel)?req.body.channel:'';
 if (!v) {
 	res.send({error:'Missing ip'});
 	return true;
@@ -66,7 +66,7 @@ CP.parallel(
 				var connection = mysql.createConnection(cfg0);
 				connection.connect();
 				var str = 'INSERT INTO `cloud_node` (`node_ip`,`total_space`,`free_space`, `free`, `created`, `updated`, `score`,`channel`) VALUES (' +
-				    "'"+ip+"','" + space.total + "','" + space.free + "','" + space.free_rate + "',NOW(), NOW(), 1000, '')  " +
+				    "'"+ip+"','" + space.total + "','" + space.free + "','" + space.free_rate + "',NOW(), NOW(), 1000, '" + channel + "')  " +
 				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `total_space` = '" 
 					+ space.total + "', `free_space` = '" + space.free + "', " +
 					"`free` = '" + space.free_rate + "'; ";
