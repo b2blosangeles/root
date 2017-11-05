@@ -70,7 +70,7 @@ _f['D2'] = function(cbk) {
 					} else {
 						var v = {};
 						try { v = JSON.parse(body); } catch(e) {}
-						if (v.ip == ip) changeStatus(false, cbk1);
+						if (v.ip != ip) changeStatus(false, cbk1);
 						else changeStatus(true, cbk1);
 					}
 				   });	
