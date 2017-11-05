@@ -69,6 +69,7 @@ CP.parallel(
 				    "'"+ip+"','" + space.total + "','" + space.free + "','" + space.free_rate + "',NOW(), NOW(), 1000, '" + channel + "')  " +
 				    " ON DUPLICATE KEY UPDATE `updated` = NOW(), `total_space` = '" 
 					+ space.total + "', `free_space` = '" + space.free + "', " +
+				    	"`channel` = '" + channel + "', " +
 					"`free` = '" + space.free_rate + "'; ";
 	
 				connection.query(str, function (error, results, fields) {
