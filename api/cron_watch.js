@@ -16,7 +16,7 @@ pkg.fs.readFile('/var/.qalet_cron_watch.data', 'utf8', function(err,data) {
                     });             
                 });
             } else {
-                res.send('normal A');
+                res.send('normal');
             }
         } else {
             res.send('watch error!!');
