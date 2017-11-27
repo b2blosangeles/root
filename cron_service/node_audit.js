@@ -113,7 +113,7 @@ _f['D2'] = function(cbk) {
 		_f1,
 		function(data) {
 			cbk(data);
-		}, 2000
+		}, 10000
 	);	
 }
 
@@ -145,7 +145,7 @@ _f['D3'] = function(cbk) {
 		_f1,
 		function(data) {
 			cbk(data);
-		}, 2000
+		}, 10000
 	);	
 }
 /* Pull monitor cloud server */
@@ -190,7 +190,7 @@ _f['E3'] = function(cbk) {
 		_f1,
 		function(data) {
 			cbk(data);
-		}, 2000
+		}, 10000
 	);	
 }
 CP.serial(
@@ -223,7 +223,7 @@ CP.serial(
 		      }
 		    });	 
 		})();		
-	}, 10000
+	}, 30000
 );	
 
 return true;
