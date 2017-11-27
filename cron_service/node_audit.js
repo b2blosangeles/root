@@ -96,6 +96,35 @@ _f['D2'] = function(cbk) {
 		}, 2000
 	);	
 }
+
+_f['D3'] = function(cbk) {
+	var CP1 = new crowdProcess();
+	var _f1 = {}, recs = CP.data.D1;	
+	for (var i = 0; i < recs.length; i++) {
+		_f1['P_'+i] = (function(i) {
+			return function(cbk1) {
+				var ip = recs[i].node_ip;
+				request({
+					url: 'http://'+ ip +'/api/cron_watch.api',
+					headers: {
+					    "content-type": "application/json"
+					},
+					timeout: 500
+				    }, function (error, resp, body) { 
+					cbk1('====http://'+ ip +'/api/cron_watch.api');
+				   });	
+			}
+		})(i);
+	}
+	
+	CP1.parallel(
+		_f1,
+		function(data) {
+			cbk(data);
+		}, 2000
+	);	
+}
+
 CP.serial(
 	_f,
 	function(data) {
