@@ -37,7 +37,6 @@ _f['D1'] = function(cbk) {
 		connection.end();
 		if (error) {
 			cbk(false);
-			CP.exit = 1;
 		} else {
 			cbk(results);
 		}
@@ -149,7 +148,20 @@ _f['D3'] = function(cbk) {
 		}, 2000
 	);	
 }
-
+/* Pull monitor cloud server */
+_f['E1'] = function(cbk) {
+	var str = "SELECT * FROM `cloud_server`";
+	var connection = mysql.createConnection(cfg0);
+	connection.connect();
+	connection.query(str, function (error, results, fields) {
+		connection.end();
+		if (error) {
+			cbk(false);
+		} else {
+			cbk(results);
+		}
+	});	
+}
 
 CP.serial(
 	_f,
