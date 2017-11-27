@@ -1,3 +1,3 @@
 [
-	{"id":"_node_audit","schedule":"11 * * * * *", "script":"node_audit.js"}
+	{"id":"_node_audit","schedule":"11 * * * * *", "script":"node_server_audit.js"}
 ]
