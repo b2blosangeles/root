@@ -88,4 +88,4 @@ CP.parallel(
 	},
 	10000
 );
-encodeURIComponent
+
