@@ -166,7 +166,7 @@ _f['E3'] = function(cbk) {
 	if  (CP.data.E1 == false) {  cbk(false); return true; }
 	
 	var CP1 = new crowdProcess();
-	var _f1 = {}, recs = CP.dataE1;	
+	var _f1 = {}, recs = CP.data.E1;	
 	for (var i = 0; i < recs.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
