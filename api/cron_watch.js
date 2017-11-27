@@ -1,3 +1,4 @@
+/* if cron stopped root server will be reboot */
 pkg.fs.readFile('/var/.qalet_cron_watch.data', 'utf8', function(err,data) {
   if (err){
       res.send(err.message);
