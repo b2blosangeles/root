@@ -28,6 +28,7 @@ _f['D0'] = function(cbk) {
 	});	
 }
 
+/* Pull monitor cloud nodes */
 _f['D1'] = function(cbk) {
 	var str = "SELECT * FROM `cloud_node`";
 	var connection = mysql.createConnection(cfg0);
@@ -43,6 +44,7 @@ _f['D1'] = function(cbk) {
 	});	
 }
 _f['D2'] = function(cbk) {
+	if  (CP.data.D1 == false) {  cbk(false); return true; }
 	var CP1 = new crowdProcess();
 	var _f1 = {}, recs = CP.data.D1;	
 	for (var i = 0; i < recs.length; i++) {
@@ -117,6 +119,8 @@ _f['D2'] = function(cbk) {
 }
 
 _f['D3'] = function(cbk) {
+	if  (CP.data.D1 == false) {  cbk(false); return true; }
+	
 	var CP1 = new crowdProcess();
 	var _f1 = {}, recs = CP.data.D1;	
 	for (var i = 0; i < recs.length; i++) {
@@ -145,6 +149,7 @@ _f['D3'] = function(cbk) {
 		}, 2000
 	);	
 }
+
 
 CP.serial(
 	_f,
