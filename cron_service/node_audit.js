@@ -9,6 +9,22 @@ var request = require(env.root_path + '/package/request/node_modules/request');
 var CP = new crowdProcess();
 var _f = {};
 
+_f['D0'] = function(cbk) {
+	var exec = require('child_process').exec;
+	var LOG = require(env.root_path + '/package/log/log.js');
+	var log = new LOG();
+
+	var cmd = 'cd ' + env.root_path + '/site && git pull';
+	exec(cmd, function(error, stdout, stderr) {
+	    	if (error) {
+			log.write("/var/log/shusiou_cron.log", 'cron::'+cmd,  JSON.stringify(error));
+		} else {
+			log.write("/var/log/cron_git.log", 'git cron :: ' + cmd, stdout); 
+		}
+		cbk(cmd);
+	});	
+}
+
 _f['D1'] = function(cbk) {
 	var str = "SELECT * FROM `cloud_node`";
 	var connection = mysql.createConnection(cfg0);
