@@ -111,9 +111,7 @@ _f['D3'] = function(cbk) {
 					},
 					timeout: 500
 				    }, function (error, resp, body) { 
-					console.log('====http://'+ ip +'/api/cron_watch.api');
-					console.log(body);
-					cbk1(true);
+					cbk1(body);
 				   });	
 			}
 		})(i);
