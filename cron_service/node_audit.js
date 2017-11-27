@@ -10,6 +10,9 @@ var CP = new crowdProcess();
 var _f = {};
 
 _f['D0'] = function(cbk) {
+	
+	/* Pull root code if necessary */
+	
 	var exec = require('child_process').exec;
 	var LOG = require(env.root_path + '/package/log/log.js');
 	var log = new LOG();
