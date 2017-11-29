@@ -1,7 +1,7 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
-var cfg0 = require(env.site_path + '/api/cfg/db.json');
+var cfg0 = require(env.config_path + '/config.json').db;
 
-res.send(env);
+res.send(cfg0);
 
 var CP = new pkg.crowdProcess();
 var _f = {};
