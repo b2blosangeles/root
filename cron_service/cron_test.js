@@ -151,7 +151,7 @@ _f['D3'] = function(cbk) {
 				   });	
 			}
 		})(i);
-		/* --- code for pull code */
+		/* --- git pull code */
 		_f1['PGIT_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
@@ -213,7 +213,7 @@ _f['E3'] = function(cbk) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					timeout: 500
+					timeout: 5900
 				    }, function (error, resp, body) { 
 					console.log('Called ' + 'http://'+ ip +'/api/cron_watch.api');
 					console.log(body);
@@ -221,6 +221,33 @@ _f['E3'] = function(cbk) {
 				   });	
 			}
 		})(i);
+		
+		/* --- git pull code */
+		_f1['PGIT_'+i] = (function(i) {
+			return function(cbk1) {
+				var ip = recs[i].server_ip;
+				var delay = randomInt(0,300) * 10;
+				setTimeout(
+					function() {
+						request({
+							url: 'http://'+ ip +'/api/admin.api',
+							method: 'POST',
+							headers: {
+							    "content-type": "application/json"
+							},
+							form: {opt:'git_all_pull'},
+							timeout: 5900
+						    }, function (error, resp, body) { 
+							console.log('Called ' + 'http://'+ ip +'/api/admin.api');
+							if (error) console.log(error.message);
+							if (body) console.log(body);
+							cbk1(true);
+						   });	
+					}, delay
+				      );						
+			}
+		})(i);				
+		
 	}
 	
 	CP1.parallel(
