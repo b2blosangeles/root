@@ -57,7 +57,7 @@ _f['D2'] = function(cbk) {
 			cbk(data);
 		}, 10000
 	);	
-}
+};
 CP.serial(
 	_f,
 	function(data) {
