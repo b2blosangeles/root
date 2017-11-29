@@ -148,6 +148,39 @@ _f['D3'] = function(cbk) {
 		}, 10000
 	);	
 }
+
+_f['D3_GIT'] = function(cbk) {
+	if  (CP.data.D1 == false) {  cbk(false); return true; }
+	
+	var CP1 = new crowdProcess();
+	var _f1 = {}, recs = CP.data.D1;	
+	for (var i = 0; i < recs.length; i++) {
+		_f1['P_'+i] = (function(i) {
+			return function(cbk1) {
+				var ip = recs[i].node_ip;
+				request({
+					url: 'http://'+ ip +'/api/admin.api',
+					headers: {
+					    "content-type": "application/json"
+					},
+					data: {opt:'niu'},
+					timeout: 500
+				    }, function (error, resp, body) { 
+					console.log('Called ' + 'http://'+ ip +'/api/admin.api');
+					console.log(body);
+					cbk1(true);
+				   });	
+			}
+		})(i);
+	}
+	
+	CP1.parallel(
+		_f1,
+		function(data) {
+			cbk(data);
+		}, 10000
+	);	
+}
 /* Pull monitor cloud server */
 _f['E1'] = function(cbk) {
 	var str = "SELECT * FROM `cloud_server`";
