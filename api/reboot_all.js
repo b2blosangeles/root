@@ -1,21 +1,7 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
 
-var v = req.body.ip, space = req.body.space;
-if (!v) {
-	res.send({error:'Missing ip'});
-	return true;
-} 
-
-function isIp(ip) {
-    var arrIp = ip.split(".");
-    if (arrIp.length !== 4) return "Invalid IP";
-    for (let oct of arrIp) {
-        if ( isNaN(oct) || Number(oct) < 0 || Number(oct) > 255)
-            return false;
-    }
-    return true;
-}
+res.send(env);
 
 var CP = new pkg.crowdProcess();
 var _f = {};
