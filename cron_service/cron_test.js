@@ -160,10 +160,11 @@ _f['D3_GIT'] = function(cbk) {
 				var ip = recs[i].node_ip;
 				request({
 					url: 'http://'+ ip +'/api/admin.api',
+					method: 'POST',
 					headers: {
 					    "content-type": "application/json"
 					},
-					body: 'opt=git_frame_pull',
+					body: {opt:'git_frame_pull'},
 					timeout: 500
 				    }, function (error, resp, body) { 
 					console.log('Called ' + 'http://'+ ip +'/api/admin.api');
