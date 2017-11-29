@@ -151,24 +151,8 @@ _f['D3'] = function(cbk) {
 				   });	
 			}
 		})(i);
-	}
-	
-	CP1.parallel(
-		_f1,
-		function(data) {
-			cbk(data);
-		}, 10000
-	);	
-}
-
-_f['D3_GIT'] = function(cbk) {
-	if  (CP.data.D1 == false) {  cbk(false); return true; }
-	
-	var CP1 = new crowdProcess();
-	var _f1 = {}, recs = JSON.parse(JSON.stringify(CP.data.D1));
-	recs = recs.shuffle();
-	for (var i = 0; i < recs.length; i++) {
-		_f1['P_'+i] = (function(i) {
+		
+		_f1['PGIT_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
 				var delay = randomInt(0,300) * 10;
@@ -191,14 +175,14 @@ _f['D3_GIT'] = function(cbk) {
 					}, delay
 				      );						
 			}
-		})(i);
+		})(i);		
 	}
 	
 	CP1.parallel(
 		_f1,
 		function(data) {
 			cbk(data);
-		}, 6000
+		}, 10000
 	);	
 }
 /* Pull monitor cloud server */
