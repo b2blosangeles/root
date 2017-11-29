@@ -1,14 +1,13 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 var config = require(env.config_path + '/config.json');
-var cfg0 = config.db;
-res.send(config.root);
+var cfg_db = config.db;
 
 var CP = new pkg.crowdProcess();
 var _f = {};
 
 _f['D1'] = function(cbk) {
 	var str = "SELECT * FROM `cloud_node`";
-	var connection = mysql.createConnection(cfg0);
+	var connection = mysql.createConnection(cfg_db);
 	connection.connect();
 	connection.query(str, function (error, results, fields) {
 		connection.end();
