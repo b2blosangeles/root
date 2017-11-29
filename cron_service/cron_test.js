@@ -1,5 +1,6 @@
 var path = require('path'), env = {root_path:path.join(__dirname, '../..')};
 env.site_path = env.root_path + '/site';
+env.confog_path = '/var/qalet_config';
 
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
