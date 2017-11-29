@@ -58,7 +58,7 @@ _f['D2'] = function(cbk) {
 		}, 10000
 	);	
 }
-CP.parallel(
+CP.serial(
 	_f,
 	function(data) {
 		res.send(data);
