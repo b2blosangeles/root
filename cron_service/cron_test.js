@@ -9,6 +9,9 @@ var request = require(env.root_path + '/package/request/node_modules/request');
 var CP = new crowdProcess();
 var _f = {};
 
+function randomInt(min,max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
 Array.prototype.shuffle = function() {
   let m = this.length, i;
   while (m) {
@@ -168,7 +171,7 @@ _f['D3_GIT'] = function(cbk) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-				var delay = i * 5;
+				var delay = randomInt(0,300) * 10;
 				setTimeout(
 					function() {
 						request({
@@ -178,7 +181,7 @@ _f['D3_GIT'] = function(cbk) {
 							    "content-type": "application/json"
 							},
 							form: {opt:'git_frame_pull'},
-							timeout: 5000
+							timeout: 5900
 						    }, function (error, resp, body) { 
 							console.log('Called ' + 'http://'+ ip +'/api/admin.api');
 							if (error) console.log(error.message);
@@ -195,7 +198,7 @@ _f['D3_GIT'] = function(cbk) {
 		_f1,
 		function(data) {
 			cbk(data);
-		}, 10000
+		}, 6000
 	);	
 }
 /* Pull monitor cloud server */
