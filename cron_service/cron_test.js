@@ -140,7 +140,7 @@ _f['D3'] = function(cbk) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					timeout: 500
+					timeout: 8000
 				    }, function (error, resp, body) { 
 					console.log('Called ' + 'http://'+ ip +'/api/cron_watch.api');
 					console.log(body);
@@ -168,7 +168,7 @@ _f['D3_GIT'] = function(cbk) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-				var delay = i * 500;
+				var delay = i * 5;
 				setTimeout(
 					function() {
 						request({
