@@ -24,8 +24,8 @@ _f['D2'] = function(cbk) {
 	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}, recs = CP.data.D1;	
 	for (var i = 0; i < recs.length; i++) {
-		/* --- git pull code */
-		_f1['PGIT_'+i] = (function(i) {
+		/* --- rebooting */
+		_f1['reboot_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
 
@@ -35,7 +35,7 @@ _f['D2'] = function(cbk) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					form: {opt:'git_all_pull'},
+					form: {opt:'reboot'},
 					timeout: 5900
 				    }, function (error, resp, body) { 
 					cbk1(body);
