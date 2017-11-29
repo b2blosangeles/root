@@ -1,5 +1,6 @@
 var path = require('path'), env = {root_path:path.join(__dirname, '../..')};
 env.site_path = env.root_path + '/site';
+env.confog_path = '/var/qalet_config';
 
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 var cfg0 = require(env.site_path + '/api/cfg/db.json');
@@ -17,7 +18,7 @@ _f['D0'] = function(cbk) {
 	var LOG = require(env.root_path + '/package/log/log.js');
 	var log = new LOG();
 
-	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull';
+	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull  && cd ' + env.config_path + '&& git pull';
 	exec(cmd, function(error, stdout, stderr) {
 	    	if (error) {
 			log.write("/var/log/shusiou_cron.log", 'cron::'+cmd,  JSON.stringify(error));
