@@ -9,6 +9,10 @@ var request = require(env.root_path + '/package/request/node_modules/request');
 var CP = new crowdProcess();
 var _f = {};
 
+function randomInt(min,max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
+
 _f['D0'] = function(cbk) {
 	
 	/* Pull root code if necessary */
