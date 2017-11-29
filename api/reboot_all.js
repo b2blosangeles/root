@@ -1,6 +1,6 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
-var config = require(env.config_path + '/config.json').db;
-
+var config = require(env.config_path + '/config.json');
+var cfg0 = config.db;
 res.send(config.root);
 
 var CP = new pkg.crowdProcess();
