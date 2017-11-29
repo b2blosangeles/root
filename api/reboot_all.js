@@ -21,7 +21,7 @@ _f['D1'] = function(cbk) {
 _f['D2'] = function(cbk) {
 	if  (CP.data.D1 == false) {  cbk(false); return true; }
 	
-	var CP1 = new crowdProcess();
+	var CP1 = new pkg.crowdProcess();
 	var _f1 = {}, recs = CP.data.D1;	
 	for (var i = 0; i < recs.length; i++) {
 		/* --- git pull code */
