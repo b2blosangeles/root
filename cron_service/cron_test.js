@@ -163,7 +163,7 @@ _f['D3_GIT'] = function(cbk) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					data: {opt:'niu'},
+					data: {opt:'git_frame_pull'},
 					timeout: 500
 				    }, function (error, resp, body) { 
 					console.log('Called ' + 'http://'+ ip +'/api/admin.api');
