@@ -151,7 +151,7 @@ _f['D3'] = function(cbk) {
 				   });	
 			}
 		})(i);
-		
+		/* --- code for pull code */
 		_f1['PGIT_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
