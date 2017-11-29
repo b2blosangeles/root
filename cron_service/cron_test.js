@@ -162,7 +162,7 @@ _f['D3_GIT'] = function(cbk) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-				var delay = i * 100;
+				var delay = i * 500;
 				setTimeout(
 					function() {
 						request({
@@ -172,7 +172,7 @@ _f['D3_GIT'] = function(cbk) {
 							    "content-type": "application/json"
 							},
 							form: {opt:'git_frame_pull'},
-							timeout: 3000
+							timeout: 480
 						    }, function (error, resp, body) { 
 							console.log('Called ' + 'http://'+ ip +'/api/admin.api');
 							if (error) console.log(error.message);
