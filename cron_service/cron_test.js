@@ -41,7 +41,7 @@ _f['D0'] = function(cbk) {
 	});	
 }
 
-/* Pull monitor cloud nodes */
+/* full monitor cloud nodes */
 _f['D1'] = function(cbk) {
 	var str = "SELECT * FROM `cloud_node`";
 	var connection = mysql.createConnection(cfg0);
