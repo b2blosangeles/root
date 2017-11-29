@@ -9,8 +9,13 @@ var request = require(env.root_path + '/package/request/node_modules/request');
 var CP = new crowdProcess();
 var _f = {};
 
-function randomInt(min,max) {
-  return Math.floor(Math.random()*(max-min+1)+min);
+Array.prototype.shuffle = function() {
+  let m = this.length, i;
+  while (m) {
+    i = (Math.random() * m--) >>> 0;
+    [this[m], this[i]] = [this[i], this[m]]
+  }
+  return this;
 }
 
 _f['D0'] = function(cbk) {
@@ -157,7 +162,8 @@ _f['D3_GIT'] = function(cbk) {
 	if  (CP.data.D1 == false) {  cbk(false); return true; }
 	
 	var CP1 = new crowdProcess();
-	var _f1 = {}, recs = CP.data.D1;	
+	var _f1 = {}, recs = JSON.parse(JSON.stringify(CP.data.D1));
+	recs = recs.shuffle();
 	for (var i = 0; i < recs.length; i++) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
