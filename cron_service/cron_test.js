@@ -64,7 +64,7 @@ _f['D2'] = function(cbk) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					timeout: 500
+					timeout: 8000
 				    }, function (error, resp, body) { 
 					var changeStatus = function(mark, space, cbk) {
 						var a = [], audit = [], score = 0;
