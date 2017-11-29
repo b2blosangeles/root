@@ -175,9 +175,8 @@ _f['D3_GIT'] = function(cbk) {
 							timeout: 3000
 						    }, function (error, resp, body) { 
 							console.log('Called ' + 'http://'+ ip +'/api/admin.api');
-							if (error) console.log('error.message');
-							if (body) console.log('body');
-							if (resp) console.log('resp');
+							if (error) console.log(error.message);
+							if (body) console.log(body);
 							cbk1(true);
 						   });	
 					}, delay
