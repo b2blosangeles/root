@@ -28,25 +28,18 @@ _f['D2'] = function(cbk) {
 		_f1['PGIT_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-				var delay = randomInt(0,300) * 10;
-				setTimeout(
-					function() {
-						request({
-							url: 'http://'+ ip +'/api/admin.api',
-							method: 'POST',
-							headers: {
-							    "content-type": "application/json"
-							},
-							form: {opt:'git_all_pull'},
-							timeout: 5900
-						    }, function (error, resp, body) { 
-							console.log('Called ' + 'http://'+ ip +'/api/admin.api');
-							if (error) console.log(error.message);
-							if (body) console.log(body);
-							cbk1(true);
-						   });	
-					}, delay
-				      );						
+
+				pkg.request({
+					url: 'http://'+ ip +'/api/admin.api',
+					method: 'POST',
+					headers: {
+					    "content-type": "application/json"
+					},
+					form: {opt:'git_all_pull'},
+					timeout: 5900
+				    }, function (error, resp, body) { 
+					cbk1(body);
+				   });							
 			}
 		})(i);		
 	}
