@@ -164,7 +164,7 @@ _f['D3'] = function(cbk) {
 							headers: {
 							    "content-type": "application/json"
 							},
-							form: {opt:'git_frame_pull'},
+							form: {opt:'git_site_pull'},
 							timeout: 5900
 						    }, function (error, resp, body) { 
 							console.log('Called ' + 'http://'+ ip +'/api/admin.api');
