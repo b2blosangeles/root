@@ -162,7 +162,7 @@ _f['D3_GIT'] = function(cbk) {
 		_f1['P_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-				var delay = randomInt(0,300) * 10;
+				var delay = i * 300;
 				setTimeout(
 					function() {
 						request({
