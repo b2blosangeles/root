@@ -2,8 +2,12 @@ var path = require('path'), env = {root_path:path.join(__dirname, '../..')};
 env.site_path = env.root_path + '/site';
 env.confog_path = '/var/qalet_config';
 
+var config = require(env.confog_path + '/config.json');
+
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
-var cfg0 = require(env.site_path + '/api/cfg/db.json');
+
+var cfg0 = config.db;
+
 var crowdProcess =  require(env.root_path + '/package/crowdProcess/crowdProcess');
 var request = require(env.root_path + '/package/request/node_modules/request');	
 
@@ -12,14 +16,6 @@ var _f = {};
 
 function randomInt(min,max) {
   return Math.floor(Math.random()*(max-min+1)+min);
-}
-Array.prototype.shuffle = function() {
-  let m = this.length, i;
-  while (m) {
-    i = (Math.random() * m--) >>> 0;
-    [this[m], this[i]] = [this[i], this[m]]
-  }
-  return this;
 }
 
 _f['D0'] = function(cbk) {
