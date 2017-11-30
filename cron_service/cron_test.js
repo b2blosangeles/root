@@ -19,9 +19,15 @@ function randomInt(min,max) {
 }
 
 function runGitPull() {
-	var patt = /root\_dev\./i;
+	var rule = {
+		dev:{patt:/root\_dev\./i, v:1},
+		qa:{patt:/root\_qa\./i, v:9},
+		prod:{patt:/root\_dev\./i, v:10}
+	}
 	var m = new Date().getMinutes();
-	if (m % 5 == 0) return true;
+	for (v in rule) {
+		if (rule[v].patt.test(config.root) &&  m % rule[v].v == 0) return true;
+	}
 	else return false;
 }
 console.log('---environment----');
