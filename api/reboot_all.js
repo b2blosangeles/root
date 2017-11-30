@@ -17,7 +17,7 @@ _f['D1'] = function(cbk) {
 			cbk(results);
 		}
 	});	
-}
+};
 _f['D2'] = function(cbk) {
 	if  (CP.data.D1 == false) {  cbk(false); return true; }
 	
@@ -28,7 +28,7 @@ _f['D2'] = function(cbk) {
 		_f1['reboot_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-				cbk( 'http://'+ ip +'/api/admin.api); returntrue;
+				cbk1('http://'+ ip +'/api/admin.api); return true;
 				pkg.request({
 					url: 'http://'+ ip +'/api/admin.api',
 					method: 'POST',
