@@ -1,3 +1,31 @@
+/* --- code for cron watch ---*/
+(function(){
+    var path = require('path');
+    var env = {root_path:path.join(__dirname, '../..')};
+    env.site_path = env.root_path + '/site';
+    var request =  require(env.root_path + '/package/request/node_modules/request');
+    var fs = require('fs');
+
+    var watch0 = {start:new Date(), mark:new Date()};
+    fs.readFile('/var/.qalet_cron_watch.data', 'utf8', function(err,data) {
+      if (err){
+	  fs.writeFile('/var/.qalet_cron_watch.data', JSON.stringify(watch0), function (err) {});
+      } else {
+	var watch = {};
+	try { watch = JSON.parse(data);} catch (e) {}
+	if (watch.mark)  {
+	  delete watch.start;
+	  watch.mark = new Date();
+	  fs.writeFile('/var/.qalet_cron_watch.data', JSON.stringify(watch), function (err) {
+	      console.log(watch);
+	  });
+	} 
+      }
+    });	 
+})();
+
+/* --- code for audit ---*/
+
 var path = require('path'), env = {root_path:path.join(__dirname, '../..')};
 env.site_path = env.root_path + '/site';
 env.confog_path = '/var/qalet_config';
@@ -36,7 +64,10 @@ console.log(runGitPull() + '--' + new Date().getMinutes() );
 console.log('---environment----');
 
 _f['D0'] = function(cbk) {
-	
+	if (!runGitPull()) {
+		cbk(true);
+		return true;
+	}
 	/* Pull root code if necessary */
 	
 	var exec = require('child_process').exec;
@@ -53,7 +84,7 @@ _f['D0'] = function(cbk) {
 			log.write("/var/log/cron_git.log", 'git cron :: ' + cmd, stdout); 
 		}
 		*/
-		cbk(cmd);
+		cbk(stdout);
 	});	
 }
 
@@ -282,30 +313,6 @@ CP.serial(
 	function(data) {
 		
 		process.stdout.write(JSON.stringify(data.results));
-		/* --- code for cron watch ---*/
-		(function(){
-		    var path = require('path');
-		    var env = {root_path:path.join(__dirname, '../..')};
-		    env.site_path = env.root_path + '/site';
-		    var request =  require(env.root_path + '/package/request/node_modules/request');
-		    var fs = require('fs');
-
-		    var watch0 = {start:new Date(), mark:new Date()};
-		    fs.readFile('/var/.qalet_cron_watch.data', 'utf8', function(err,data) {
-		      if (err){
-			  fs.writeFile('/var/.qalet_cron_watch.data', JSON.stringify(watch0), function (err) {});
-		      } else {
-			var watch = {};
-			try { watch = JSON.parse(data);} catch (e) {}
-			if (watch.mark)  {
-			  delete watch.start;
-			  watch.mark = new Date();
-			  fs.writeFile('/var/.qalet_cron_watch.data', JSON.stringify(watch), function (err) {
-			      console.log(watch);
-			  });
-			} 
-		      }
-		    });	 
-		})();		
+		
 	}, 30000
 );
