@@ -18,6 +18,8 @@ function randomInt(min,max) {
   return Math.floor(Math.random()*(max-min+1)+min);
 }
 
+console.log(config.root);
+
 _f['D0'] = function(cbk) {
 	
 	/* Pull root code if necessary */
@@ -26,13 +28,16 @@ _f['D0'] = function(cbk) {
 	var LOG = require(env.root_path + '/package/log/log.js');
 	var log = new LOG();
 
-	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull  && cd ' + env.config_path + '&& git pull';
+	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull  && cd ' + 
+	    env.config_path + '&& git pull';
 	exec(cmd, function(error, stdout, stderr) {
-	    	if (error) {
+	    	/*
+		if (error) {
 			log.write("/var/log/shusiou_cron.log", 'cron::'+cmd,  JSON.stringify(error));
 		} else {
 			log.write("/var/log/cron_git.log", 'git cron :: ' + cmd, stdout); 
 		}
+		*/
 		cbk(cmd);
 	});	
 }
