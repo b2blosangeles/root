@@ -28,7 +28,7 @@ _f['D2'] = function(cbk) {
 		_f1['reboot_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-				cbk1('http://'+ ip +'/api/admin.api); return true;
+				cbk1('http://'+ ip +'/api/admin.api'); return true;
 				pkg.request({
 					url: 'http://'+ ip +'/api/admin.api',
 					method: 'POST',
