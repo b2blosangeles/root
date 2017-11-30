@@ -2,13 +2,38 @@ var path = require('path'), env = {root_path:path.join(__dirname, '../..')};
 env.site_path = env.root_path + '/site';
 env.confog_path = '/var/qalet_config';
 
+var config = require(env.confog_path + '/config.json');
+
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
-var cfg0 = require(env.site_path + '/api/cfg/db.json');
+
+var cfg0 = config.db;
+
 var crowdProcess =  require(env.root_path + '/package/crowdProcess/crowdProcess');
 var request = require(env.root_path + '/package/request/node_modules/request');	
 
 var CP = new crowdProcess();
 var _f = {};
+
+function randomInt(min,max) {
+  return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+function runGitPull() {
+	var rule = {
+		dev:{patt:/root\_dev\./i, t:3},
+		qa:{patt:/root\_qa\./i, t:9},
+		prod:{patt:/root\_dev\./i, t:10}
+	}
+	var m = new Date().getMinutes();
+	for (v in rule) {
+		if (rule[v].patt.test(config.root) &&  m % rule[v].t == 0) return true;
+	}
+	return false;
+}
+console.log('---environment----');
+console.log(config.root);
+console.log(runGitPull() + '--' + new Date().getMinutes() );
+console.log('---environment----');
 
 _f['D0'] = function(cbk) {
 	
@@ -18,18 +43,21 @@ _f['D0'] = function(cbk) {
 	var LOG = require(env.root_path + '/package/log/log.js');
 	var log = new LOG();
 
-	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull  && cd ' + env.config_path + '&& git pull';
+	var cmd = 'cd ' + env.site_path + '&& git pull && cd ' + env.root_path + '&& git pull  && cd ' + 
+	    env.config_path + '&& git pull';
 	exec(cmd, function(error, stdout, stderr) {
-	    	if (error) {
+	    	/*
+		if (error) {
 			log.write("/var/log/shusiou_cron.log", 'cron::'+cmd,  JSON.stringify(error));
 		} else {
 			log.write("/var/log/cron_git.log", 'git cron :: ' + cmd, stdout); 
 		}
+		*/
 		cbk(cmd);
 	});	
 }
 
-/* Pull monitor cloud nodes */
+/* full monitor cloud nodes */
 _f['D1'] = function(cbk) {
 	var str = "SELECT * FROM `cloud_node`";
 	var connection = mysql.createConnection(cfg0);
@@ -56,7 +84,7 @@ _f['D2'] = function(cbk) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					timeout: 500
+					timeout: 8000
 				    }, function (error, resp, body) { 
 					var changeStatus = function(mark, space, cbk) {
 						var a = [], audit = [], score = 0;
@@ -132,7 +160,7 @@ _f['D3'] = function(cbk) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					timeout: 500
+					timeout: 8000
 				    }, function (error, resp, body) { 
 					console.log('Called ' + 'http://'+ ip +'/api/cron_watch.api');
 					console.log(body);
@@ -140,6 +168,33 @@ _f['D3'] = function(cbk) {
 				   });	
 			}
 		})(i);
+		/* --- git pull code */
+		if (runGitPull()) {
+			_f1['PGIT_'+i] = (function(i) {
+				return function(cbk1) {
+					var ip = recs[i].node_ip;
+					var delay = randomInt(0,300) * 10;
+					setTimeout(
+						function() {
+							request({
+								url: 'http://'+ ip +'/api/admin.api',
+								method: 'POST',
+								headers: {
+								    "content-type": "application/json"
+								},
+								form: {opt:'git_all_pull'},
+								timeout: 5900
+							    }, function (error, resp, body) { 
+								console.log('Git pull node on ' + config.root + ' from '+ ip +'');
+								if (error) console.log(error.message);
+								if (body) console.log(body);
+								cbk1(true);
+							   });	
+						}, delay
+					      );						
+				}
+			})(i);
+		}
 	}
 	
 	CP1.parallel(
@@ -177,7 +232,7 @@ _f['E3'] = function(cbk) {
 					headers: {
 					    "content-type": "application/json"
 					},
-					timeout: 500
+					timeout: 5900
 				    }, function (error, resp, body) { 
 					console.log('Called ' + 'http://'+ ip +'/api/cron_watch.api');
 					console.log(body);
@@ -185,6 +240,34 @@ _f['E3'] = function(cbk) {
 				   });	
 			}
 		})(i);
+		
+		/* --- git pull code */
+		if (runGitPull()) {
+			_f1['PGIT_'+i] = (function(i) {
+				return function(cbk1) {
+					var ip = recs[i].server_ip;
+					var delay = randomInt(0,300) * 10;
+					setTimeout(
+						function() {
+							request({
+								url: 'http://'+ ip +'/api/admin.api',
+								method: 'POST',
+								headers: {
+								    "content-type": "application/json"
+								},
+								form: {opt:'git_all_pull'},
+								timeout: 5900
+							    }, function (error, resp, body) { 
+								console.log('Git pull master on' + config.root + ' from '+ ip +'');
+								if (error) console.log(error.message);
+								if (body) console.log(body);
+								cbk1(true);
+							   });	
+						}, delay
+					      );						
+				}
+			})(i);				
+		}
 	}
 	
 	CP1.parallel(
@@ -225,6 +308,4 @@ CP.serial(
 		    });	 
 		})();		
 	}, 30000
-);	
-
-return true;
+);
