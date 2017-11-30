@@ -22,6 +22,7 @@ function runGitPull() {
 	var patt = /root\_dev\./i;
 	var m = new Date().getMinutes();
 	if (m % 5 == 0) return true;
+	else return false;
 }
 console.log('---environment----');
 console.log(config.root);
