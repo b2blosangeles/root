@@ -185,7 +185,7 @@ _f['D3'] = function(cbk) {
 								form: {opt:'git_all_pull'},
 								timeout: 5900
 							    }, function (error, resp, body) { 
-								console.log('Called ' + 'http://'+ ip +'/api/admin.api');
+								console.log('Git pull node on ' + config.root + ' from '+ ip +'');
 								if (error) console.log(error.message);
 								if (body) console.log(body);
 								cbk1(true);
@@ -258,7 +258,7 @@ _f['E3'] = function(cbk) {
 								form: {opt:'git_all_pull'},
 								timeout: 5900
 							    }, function (error, resp, body) { 
-								console.log('Called ' + 'http://'+ ip +'/api/admin.api');
+								console.log('Git pull master on' + config.root + ' from '+ ip +'');
 								if (error) console.log(error.message);
 								if (body) console.log(body);
 								cbk1(true);
