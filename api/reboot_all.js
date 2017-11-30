@@ -1,3 +1,5 @@
+/* ---  reboot servers from root server */
+
 if (!req.query['opt']) {
 	res.send('Missing opt parpmeter error');
 	return true;
@@ -34,7 +36,6 @@ if (opt == 'node' || opt == 'all') {
 			_f1['reboot_'+i] = (function(i) {
 				return function(cbk1) {
 					var ip = recs[i].node_ip;
-					cbk1('http://'+ ip +'/api/admin.api'); return true;
 					pkg.request({
 						url: 'http://'+ ip +'/api/admin.api',
 						method: 'POST',
@@ -42,7 +43,7 @@ if (opt == 'node' || opt == 'all') {
 						    "content-type": "application/json"
 						},
 						form: {opt:'reboot'},
-						timeout: 5900
+						timeout: 3000
 					    }, function (error, resp, body) { 
 						cbk1(body);
 					   });							
@@ -54,7 +55,7 @@ if (opt == 'node' || opt == 'all') {
 			_f1,
 			function(data) {
 				cbk(data);
-			}, 10000
+			}, 3100
 		);	
 	};
 }
@@ -82,7 +83,6 @@ if (opt == 'master' || opt == 'all') {
 			_f1['reboot_'+i] = (function(i) {
 				return function(cbk1) {
 					var ip = recs[i].server_ip;
-					cbk1('http://'+ ip +'/api/admin.api'); return true;
 					pkg.request({
 						url: 'http://'+ ip +'/api/admin.api',
 						method: 'POST',
@@ -90,7 +90,7 @@ if (opt == 'master' || opt == 'all') {
 						    "content-type": "application/json"
 						},
 						form: {opt:'reboot'},
-						timeout: 5900
+						timeout: 3000
 					    }, function (error, resp, body) { 
 						cbk1(body);
 					   });							
@@ -102,7 +102,7 @@ if (opt == 'master' || opt == 'all') {
 			_f1,
 			function(data) {
 				cbk(data);
-			}, 10000
+			}, 3100
 		);	
 	};
 }
@@ -118,6 +118,6 @@ CP.serial(
 	function(data) {
 		res.send(data.results);
 	},
-	10000
+	6000
 );
 
