@@ -17,8 +17,9 @@ var _f = {};
 function randomInt(min,max) {
   return Math.floor(Math.random()*(max-min+1)+min);
 }
-
+console.log('---environment----');
 console.log(config.root);
+console.log('---environment----');
 
 _f['D0'] = function(cbk) {
 	
