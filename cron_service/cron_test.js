@@ -19,7 +19,7 @@ function randomInt(min,max) {
 }
 
 function runGitPull() {
-	vr patt = /root\_dev./i;
+	vr patt = /root\_dev\./i;
 	var m = new Date().getMinutes();
 	return m;
 }
