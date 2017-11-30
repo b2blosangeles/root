@@ -26,7 +26,7 @@ function runGitPull() {
 }
 console.log('---environment----');
 console.log(config.root);
-console.log(runGitPull());
+console.log(runGitPull() + '--' + new Date().getMinutes() );
 console.log('---environment----');
 
 _f['D0'] = function(cbk) {
