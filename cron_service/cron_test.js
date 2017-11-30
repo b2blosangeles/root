@@ -20,13 +20,13 @@ function randomInt(min,max) {
 
 function runGitPull() {
 	var rule = {
-		dev:{patt:/root\_dev\./i, v:3},
-		qa:{patt:/root\_qa\./i, v:9},
-		prod:{patt:/root\_dev\./i, v:10}
+		dev:{patt:/root\_dev\./i, t:3},
+		qa:{patt:/root\_qa\./i, t:9},
+		prod:{patt:/root\_dev\./i, t:10}
 	}
 	var m = new Date().getMinutes();
 	for (v in rule) {
-		if (rule[v].patt.test(config.root) &&  m % rule[v].v == 0) return true;
+		if (rule[v].patt.test(config.root) &&  m % rule[v].t == 0) return true;
 	}
 	return false;
 }
