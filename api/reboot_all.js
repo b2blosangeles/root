@@ -116,7 +116,7 @@ if (opt == 'root' || opt == 'all') {
 CP.serial(
 	_f,
 	function(data) {
-		res.send(data);
+		res.send(data.results);
 	},
 	10000
 );
