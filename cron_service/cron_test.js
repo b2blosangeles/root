@@ -28,7 +28,7 @@ function runGitPull() {
 	for (v in rule) {
 		if (rule[v].patt.test(config.root) &&  m % rule[v].v == 0) return true;
 	}
-	else return false;
+	return false;
 }
 console.log('---environment----');
 console.log(config.root);
