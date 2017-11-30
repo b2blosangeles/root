@@ -17,8 +17,15 @@ var _f = {};
 function randomInt(min,max) {
   return Math.floor(Math.random()*(max-min+1)+min);
 }
+
+function runGitPull() {
+	vr patt = /root\_dev./i;
+	var m = new Date().getMinutes();
+	return m;
+}
 console.log('---environment----');
 console.log(config.root);
+console.log(runGitPull());
 console.log('---environment----');
 
 _f['D0'] = function(cbk) {
