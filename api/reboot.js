@@ -135,7 +135,7 @@ if (isIp(opt)) {
 			form: {opt:'reboot'},
 			timeout: 3000
 		    }, function (error, resp, body) { 
-			cbk1(body);
+			cbk(body);
 		   });			
 	}	
 }
