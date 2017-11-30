@@ -1,4 +1,13 @@
 /* ---  reboot servers from root server */
+function isIp(ip) {
+    var arrIp = ip.split(".");
+    if (arrIp.length !== 4) return false;
+    for (let oct of arrIp) {
+        if ( isNaN(oct) || Number(oct) < 0 || Number(oct) > 255)
+            return false;
+    }
+    return true;
+}
 
 if (!req.query['opt']) {
 	res.send('Missing opt parpmeter error');
@@ -113,6 +122,24 @@ if (opt == 'root' || opt == 'all') {
 		});		
 	}	
 }
+
+if (isIp(opt)) {
+	_f['SVR'] = function(cbk) {
+		var ip = opt;
+		pkg.request({
+			url: 'http://'+ ip +'/api/admin.api',
+			method: 'POST',
+			headers: {
+			    "content-type": "application/json"
+			},
+			form: {opt:'reboot'},
+			timeout: 3000
+		    }, function (error, resp, body) { 
+			cbk1(body);
+		   });			
+	}	
+}
+
 CP.serial(
 	_f,
 	function(data) {
