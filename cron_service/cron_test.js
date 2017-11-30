@@ -21,7 +21,7 @@ function randomInt(min,max) {
 function runGitPull() {
 	var patt = /root\_dev\./i;
 	var m = new Date().getMinutes();
-	return m;
+	return m % 5;
 }
 console.log('---environment----');
 console.log(config.root);
