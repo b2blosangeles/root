@@ -52,7 +52,7 @@ _f['D2'] = function(cbk) {
 	);	
 };
 _f['M1'] = function(cbk) {
-	var str = "SELECT * FROM `cloud_master`";
+	var str = "SELECT * FROM `cloud_server`";
 	var connection = mysql.createConnection(cfg_db);
 	connection.connect();
 	connection.query(str, function (error, results, fields) {
