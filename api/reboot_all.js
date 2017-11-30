@@ -64,6 +64,39 @@ _f['M1'] = function(cbk) {
 		}
 	});	
 }
+_f['M2'] = function(cbk) {
+	if  (CP.data.M1 == false) {  cbk(false); return true; }
+	
+	var CP1 = new pkg.crowdProcess();
+	var _f1 = {}, recs = CP.data.M1;	
+	for (var i = 0; i < recs.length; i++) {
+		/* --- rebooting */
+		_f1['reboot_'+i] = (function(i) {
+			return function(cbk1) {
+				var ip = recs[i].servere_ip;
+				cbk1('http://'+ ip +'/api/admin.api'); return true;
+				pkg.request({
+					url: 'http://'+ ip +'/api/admin.api',
+					method: 'POST',
+					headers: {
+					    "content-type": "application/json"
+					},
+					form: {opt:'reboot'},
+					timeout: 5900
+				    }, function (error, resp, body) { 
+					cbk1(body);
+				   });							
+			}
+		})(i);		
+	}
+	
+	CP1.parallel(
+		_f1,
+		function(data) {
+			cbk(data);
+		}, 10000
+	);	
+};
 CP.serial(
 	_f,
 	function(data) {
