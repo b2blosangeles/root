@@ -20,7 +20,7 @@ function randomInt(min,max) {
 
 function runGitPull() {
 	var rule = {
-		dev:{patt:/root\_dev\./i, t:3},
+		dev:{patt:/root\_dev\./i, t:1},
 		qa:{patt:/root\_qa\./i, t:9},
 		prod:{patt:/root\_dev\./i, t:10}
 	}
