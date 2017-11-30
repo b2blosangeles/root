@@ -28,7 +28,7 @@ _f['D2'] = function(cbk) {
 		_f1['reboot_'+i] = (function(i) {
 			return function(cbk1) {
 				var ip = recs[i].node_ip;
-
+				cbk( 'http://'+ ip +'/api/admin.api); returntrue;
 				pkg.request({
 					url: 'http://'+ ip +'/api/admin.api',
 					method: 'POST',
@@ -51,6 +51,19 @@ _f['D2'] = function(cbk) {
 		}, 10000
 	);	
 };
+_f['M1'] = function(cbk) {
+	var str = "SELECT * FROM `cloud_master`";
+	var connection = mysql.createConnection(cfg_db);
+	connection.connect();
+	connection.query(str, function (error, results, fields) {
+		connection.end();
+		if (error) {
+			cbk(false);
+		} else {
+			cbk(results);
+		}
+	});	
+}
 CP.serial(
 	_f,
 	function(data) {
