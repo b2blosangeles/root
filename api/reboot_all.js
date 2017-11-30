@@ -73,7 +73,7 @@ _f['M2'] = function(cbk) {
 		/* --- rebooting */
 		_f1['reboot_'+i] = (function(i) {
 			return function(cbk1) {
-				var ip = recs[i].servere_ip;
+				var ip = recs[i].server_ip;
 				cbk1('http://'+ ip +'/api/admin.api'); return true;
 				pkg.request({
 					url: 'http://'+ ip +'/api/admin.api',
