@@ -50,7 +50,7 @@ function runGitPull() {
 	var rule = {
 		dev:{patt:/root\_dev\./i, t:1},
 		qa:{patt:/root\_qa\./i, t:9},
-		prod:{patt:/root\_dev\./i, t:10}
+		prod:{patt:/root\_dev\./i, t:13}
 	}
 	var m = new Date().getMinutes();
 	for (v in rule) {
@@ -59,9 +59,8 @@ function runGitPull() {
 	return false;
 }
 console.log('---environment----');
-console.log(config.root);
-console.log(runGitPull() + '--' + new Date().getMinutes() );
-console.log('---environment----');
+console.log(runGitPull() + '--' + config.root );
+console.log('------------------');
 
 _f['D0'] = function(cbk) {
 	if (!runGitPull()) {
