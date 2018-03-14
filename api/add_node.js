@@ -1,6 +1,7 @@
 var mysql = require(env.site_path + '/api/inc/mysql/node_modules/mysql');
 // Shusiou Node will call this API to add himself into  
-var cfg0 = require(env.config_path + '/db.json');
+var config = require(env.config_path + '/config.json');
+var cfg0 = config.db;
 
 var v = req.body.ip, space = req.body.space;
 if (!v) {
